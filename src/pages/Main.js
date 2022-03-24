@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AppContext from '../context/AppContext';
 
 function Main() {
+  const { allPosts } = useContext(AppContext)
   return(
     <div>
-      <h1>teste</h1>
+      {allPosts.map(post => (
+         <div>
+          <h2>{post.title}</h2>
+          <p>{post.content}</p>
+        </div>
+      ))}
     </div>
   )
 }
