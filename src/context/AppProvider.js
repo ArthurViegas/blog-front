@@ -4,6 +4,8 @@ import { requestApi } from '../services/blogApi'
 
 function AppProvider({ children }) {
   const [allPosts, setPosts] = useState([])
+  const [accessToken, setAccessToken]= useState('');
+
   const getAllPosts = async () => {
     const posts = await requestApi();
     setPosts(posts)
@@ -11,9 +13,8 @@ function AppProvider({ children }) {
   useEffect(() => {
     getAllPosts();
   }, []);
-
   return(
-    <AppContext.Provider value={{allPosts}}>
+    <AppContext.Provider value={{allPosts, setAccessToken}}>
       { children }
       </AppContext.Provider>
   );
